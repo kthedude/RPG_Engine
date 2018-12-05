@@ -1,4 +1,4 @@
-package Base;
+package Model;
 
 import java.util.Random;
 
@@ -8,18 +8,20 @@ public class Battle {
 
     Random random = new Random();
 
-    private void attack(Character attacker, Character defender){
+    private int attack(Character attacker, Character defender){
         if(random.nextDouble() < attacker.getAccuracy()){
-            defender.takeDamage(attacker);
+            return defender.takeDamage(attacker);
+        }else{ //Missed
+            return 0;
         }
     }
 
-    public void playerAttack(){
-        this.attack(player, enemy);
+    public int playerAttack(){
+        return this.attack(player, enemy);
     }
 
-    public void enemyAttack(){
-        this.attack(enemy, player);
+    public int enemyAttack(){
+        return this.attack(enemy, player);
     }
 
     public Battle(Character player, Character enemy){

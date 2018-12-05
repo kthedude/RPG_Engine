@@ -1,4 +1,4 @@
-package Base;
+package Model;
 
 public abstract class Character {
     private int healthPoints, attack, defense, accuracy;
@@ -19,11 +19,11 @@ public abstract class Character {
         return (double)accuracy / 100.0;
     }
 
-    public void takeDamage(Character attacker){
+    public int takeDamage(Character attacker){
         if(attacker.attack < this.defense)
-            return;
+            return 0;
         healthPoints -= (attacker.attack - this.defense);
-        return;
+        return attacker.attack - this.defense;
     }
 
     public Character(int healthPoints, int attack, int defense, int accuracy){

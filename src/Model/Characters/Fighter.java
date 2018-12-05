@@ -1,6 +1,6 @@
-package Base.Characters;
+package Model.Characters;
 
-import Base.Character;
+import Model.Character;
 
 public class Fighter extends Character {
     public Fighter(){

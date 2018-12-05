@@ -1,8 +1,6 @@
-package UI;
+package Controller;
 
-import Base.Battle;
-import Base.Characters.Fighter;
-import Base.Characters.Goblin;
+import View.Terminal_UI;
 
 public class Main {
 
