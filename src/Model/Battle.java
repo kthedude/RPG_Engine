@@ -2,7 +2,7 @@ package Model;
 
 import java.util.Random;
 
-public class Battle {
+public class Battle extends Model{
 
     Character player, enemy;
 
