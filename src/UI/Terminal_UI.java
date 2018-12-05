@@ -18,10 +18,10 @@ public class Terminal_UI {
     public void start(){
         println("You encountered a Goblin!");
         println("What do you want to do?");
-        Choice choice = getChoice();
+        Choice choice = getBattleChoice();
         if(choice == Choice.ATTACK){
             println("You attack the Goblin!");
-            
+            startBattle();
         }else{
             println("You ran away!");
             return;
@@ -37,10 +37,10 @@ public class Terminal_UI {
     }
 
     private enum Choice {
-        ATTACK, RUN
+        ATTACK, RUN, NOTHING
     }
 
-    private Choice getChoice(){
+    private Choice getBattleChoice(){
         println("A. Attack");
         println("B. Run");
         print("Enter the letter of your choice: ");
@@ -52,7 +52,32 @@ public class Terminal_UI {
             return Choice.RUN;
         }else{
             println("Incorrect input. Try again.");
-            return getChoice();
+            return getBattleChoice();
         }
+    }
+
+    private Choice getActionChoice(){
+        println("");
+        println("A. Attack");
+        println("B. Run");
+        println("C. Do Nothing");
+        print("Enter the letter of your choice: ");
+        String input = scanner.nextLine();
+        input = input.toUpperCase();
+        char choice = input.charAt(0);
+        switch (choice) {
+            case 1 : choice = 'A';
+                     return Choice.ATTACK;
+            case 2 : choice = 'B';
+                     return Choice.RUN;
+            case 3 : choice = 'C';
+                     return Choice.NOTHING;
+            default: println("Invalid input. Try again.");
+                     return getBattleChoice();
+        }
+    }
+
+    private void startBattle(){
+
     }
 }
