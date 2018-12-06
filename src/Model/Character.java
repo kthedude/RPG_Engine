@@ -1,4 +1,4 @@
-package Model;
+package Base;
 
 public abstract class Character {
     private int healthPoints, attack, defense, accuracy;
@@ -20,10 +20,17 @@ public abstract class Character {
     }
 
     public int takeDamage(Character attacker){
-        if(attacker.attack < this.defense)
+        int damage = attacker.attack - this.defense;
+        if(damage < 1) {
             return 0;
-        healthPoints -= (attacker.attack - this.defense);
-        return attacker.attack - this.defense;
+        }else if(damage > this.healthPoints){
+            damage = this.healthPoints;
+            this.healthPoints = 0;
+            return damage;
+        }else {
+            healthPoints -= damage;
+            return damage;
+        }
     }
 
     public Character(int healthPoints, int attack, int defense, int accuracy){

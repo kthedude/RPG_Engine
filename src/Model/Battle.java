@@ -1,8 +1,8 @@
-package Model;
+package Base;
 
 import java.util.Random;
 
-public class Battle extends Model{
+public class Battle {
 
     Character player, enemy;
 
@@ -11,7 +11,7 @@ public class Battle extends Model{
     private int attack(Character attacker, Character defender){
         if(random.nextDouble() < attacker.getAccuracy()){
             return defender.takeDamage(attacker);
-        }else{ //Missed
+        }else{
             return 0;
         }
     }
@@ -31,6 +31,14 @@ public class Battle extends Model{
 
     public int getPlayerHealth(){
         return player.getHealthPoints();
+    }
+
+    public int getPlayerAttack(){
+        return player.getAttack();
+    }
+
+    public int getPlayerDefense(){
+        return player.getDefense();
     }
 
     public int getEnemyHealth(){
