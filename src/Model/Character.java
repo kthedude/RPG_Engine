@@ -1,42 +1,39 @@
 package Base;
 
 public abstract class Character {
-    private int healthPoints, attack, defense, accuracy;
+    private CharacterStats baseStats;
 
     public int getHealthPoints(){
-        return healthPoints;
+        return baseStats.getHealthPoints();
     }
 
     public int getAttack(){
-        return attack;
+        return baseStats.getAttack();
     }
 
     public int getDefense(){
-        return defense;
+        return baseStats.getDefense();
     }
 
     public double getAccuracy(){
-        return (double)accuracy / 100.0;
+        return (double)baseStats.getAccuracy() / 100.0;
     }
 
     public int takeDamage(Character attacker){
-        int damage = attacker.attack - this.defense;
+        int damage = attacker.getAttack() - this.getDefense();
         if(damage < 1) {
             return 0;
-        }else if(damage > this.healthPoints){
-            damage = this.healthPoints;
-            this.healthPoints = 0;
+        }else if(damage > this.getHealthPoints()){
+            damage = this.getHealthPoints();
+            this.baseStats.setHealthPoints(0);
             return damage;
         }else {
-            healthPoints -= damage;
+            this.baseStats.setHealthPoints(this.baseStats.getHealthPoints() - damage);
             return damage;
         }
     }
 
     public Character(int healthPoints, int attack, int defense, int accuracy){
-        this.healthPoints = healthPoints;
-        this.defense = defense;
-        this.attack = attack;
-        this.accuracy = accuracy;
+        baseStats = new CharacterStats(healthPoints, attack, defense, accuracy);
     }
 }
